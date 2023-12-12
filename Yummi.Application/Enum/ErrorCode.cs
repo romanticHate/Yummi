@@ -1,0 +1,32 @@
+﻿namespace Yummi.Application.Enum
+{
+    public enum ErrorCode
+    {
+       
+        // Validation errors should be in the range 100 - 199
+        ValidationError = 101,
+
+        // Infrastructure errors should be in the range 200-299
+        IdentityCreationFailed = 202,
+
+        // Application errors should be in the range 300 - 399
+        PostUpdateNotPossible = 300,
+        PostDeleteNotPossible = 301,
+        InteractionRemovalNotAuthorized = 302,
+        IdentityUserAlreadyExists = 303,
+        IdentityUserDoesNotExist = 304,
+        IncorrectPassword = 305,
+        UnauthorizedAccountRemoval = 306,
+        CommentRemovalNotAuthorized = 307,
+        // Domain errors should be in the range 400 - 499
+        BadRequest = 400,
+        NotFound = 404,
+        UnauthorizedJwtToken = 401,
+        Forbidden = 403,
+        // Server errors should be in the range 500 - 599
+        ServerError = 500,
+
+
+        UnknownError = 999
+    }
+}
