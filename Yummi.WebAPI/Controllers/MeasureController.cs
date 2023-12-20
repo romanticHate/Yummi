@@ -12,7 +12,8 @@ namespace Yummi.WebAPI.Controllers
     {
         private readonly IUnitOfWork _uOw;
         private readonly IMediator _mediator;
-        public MeasureController(IUnitOfWork uOw, IMediator mediator)
+        public MeasureController(IUnitOfWork uOw,
+            IMediator mediator)
         {
             _uOw = uOw;
             _mediator = mediator;

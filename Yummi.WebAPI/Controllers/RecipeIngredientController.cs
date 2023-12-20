@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Yummi.Application.DTOs;
 using Yummi.Core.Entities;

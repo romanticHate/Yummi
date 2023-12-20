@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yummi.WebAPI", "Yummi.WebAPI\Yummi.WebAPI.csproj", "{355B5E07-599E-481F-8494-D09487100990}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yummi.WebAPI", "Yummi.WebAPI\Yummi.WebAPI.csproj", "{355B5E07-599E-481F-8494-D09487100990}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yummi.Core", "Yummi.Core\Yummi.Core.csproj", "{FE1386E3-1179-44F9-97C8-A94B017247D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yummi.Core", "Yummi.Core\Yummi.Core.csproj", "{FE1386E3-1179-44F9-97C8-A94B017247D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yummi.Infrastructure", "Yummi.Infrastructure\Yummi.Infrastructure.csproj", "{FDD29EFB-4F76-4943-BCB8-873643834C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yummi.Infrastructure", "Yummi.Infrastructure\Yummi.Infrastructure.csproj", "{FDD29EFB-4F76-4943-BCB8-873643834C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yummi.Application", "Yummi.Application\Yummi.Application.csproj", "{654BB069-DC96-475F-B41E-01DDFF9034B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yummi.Application", "Yummi.Application\Yummi.Application.csproj", "{654BB069-DC96-475F-B41E-01DDFF9034B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yummi.Persistance", "Yummi.Persistance\Yummi.Persistance.csproj", "{5440008C-569E-49DF-A381-99FF948DA507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yummi.Persistance", "Yummi.Persistance\Yummi.Persistance.csproj", "{5440008C-569E-49DF-A381-99FF948DA507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yummi.UnitTest", "Yummi.UnitTest\Yummi.UnitTest.csproj", "{A887571C-1635-44FF-B7D1-B0FEAD7F446E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5440008C-569E-49DF-A381-99FF948DA507}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5440008C-569E-49DF-A381-99FF948DA507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5440008C-569E-49DF-A381-99FF948DA507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A887571C-1635-44FF-B7D1-B0FEAD7F446E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A887571C-1635-44FF-B7D1-B0FEAD7F446E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A887571C-1635-44FF-B7D1-B0FEAD7F446E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A887571C-1635-44FF-B7D1-B0FEAD7F446E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

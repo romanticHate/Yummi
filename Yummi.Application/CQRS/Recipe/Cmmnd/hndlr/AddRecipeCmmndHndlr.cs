@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Yummi.Application.Enum;
-using Yummi.Application.Exceptions;
 using Yummi.Application.Models;
 using Yummi.Application.Validators;
 using Yummi.Core.Interfaces;
