@@ -1,17 +1,16 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Yummi.Application.CQRS.Ingredient.Cmmnd.Hndlr;
-using Yummi.Application.CQRS.Ingredient.Qry;
 using Yummi.Application.CQRS.Ingredient.Qry.Hndlr;
 using Yummi.Application.CQRS.Recipe.Cmmnd.hndlr;
 using Yummi.Application.CQRS.Recipe.Qry.Hndlr;
 using Yummi.Application.Mappers;
-using Yummi.Application.Validators;
 using Yummi.Core.Interfaces;
 using Yummi.Core.Interfaces.Generic;
 using Yummi.Infrastructure.Uow;
 using Yummi.Persistance.DataContext;
 using Yummi.Persistance.Repositories;
+using Yummi.Persistance.Validators;
 
 namespace Yummi.WebAPI.Extensions
 {

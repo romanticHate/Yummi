@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Yummi.Application.CQRS.Recipe.Cmmnd;
 using Yummi.Application.CQRS.Recipe.Qry;
-using Yummi.Application.DTOs;
+using Yummi.Core.DTOs;
 using Yummi.Core.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

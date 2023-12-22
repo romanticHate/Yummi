@@ -1,4 +1,4 @@
-﻿namespace Yummi.Application.DTOs
+﻿namespace Yummi.Core.DTOs
 {
     public class RecipeIngredientDto
     {

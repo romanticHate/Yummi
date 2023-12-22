@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Yummi.Application.Enum;
 using Yummi.Application.Models;
-using Yummi.Application.Validators;
 using Yummi.Core.Interfaces;
+using Yummi.Persistance.Validators;
 
 namespace Yummi.Application.CQRS.Recipe.Cmmnd.hndlr
 {

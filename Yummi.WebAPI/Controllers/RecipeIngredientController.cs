@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Yummi.Application.DTOs;
+using Yummi.Core.DTOs;
 using Yummi.Core.Entities;
 using Yummi.Core.Interfaces;
 

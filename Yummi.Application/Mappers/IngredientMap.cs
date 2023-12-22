@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Yummi.Application.DTOs;
+using Yummi.Core.DTOs;
 
 namespace Yummi.Application.Mappers
 {

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Yummi.Core.Entities;
 
-namespace Yummi.Application.Validators
+namespace Yummi.Persistance.Validators
 {
     public class RecipeVldtr: AbstractValidator<Recipe>
     {
