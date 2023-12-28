@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
 using Yummi.Core.Entities;
@@ -9,49 +10,36 @@ namespace Yummi.UnitTest
     public class UT_GenericRepository
     {
         [Fact]
-        public async void Get_All_Recipes()
+        public async void From_Recipe_GetAllRecipes()
         {
             // Arrange
+
+            var mockRecipeList = new List<Recipe>
+            {
+                new Recipe { Id = 1, Name = "spaghetti bolognese" },
+                new Recipe { Id = 3, Name = "TEST" }
+            };
+
+            var mockDbSet = new Mock<DbSet<Recipe>>();
+            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Provider).Returns(mockRecipeList.AsQueryable().Provider);
+            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Expression).Returns(mockRecipeList.AsQueryable().Expression);
+            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.ElementType).Returns(mockRecipeList.AsQueryable().ElementType);
+            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.GetEnumerator()).Returns(() => mockRecipeList.GetEnumerator());
+
             var mockContext = new Mock<YummiDbContext>();
-            var mockDbSet = new Mock<Microsoft.EntityFrameworkCore.DbSet<Recipe>>();
             mockContext.Setup(m => m.Set<Recipe>()).Returns(mockDbSet.Object);
 
             var repository = new GenericRepository<Recipe>(mockContext.Object);
 
             // Act
-            var recipes = await repository.GetAllAsync();
+            var recipes =  await repository.GetAllAsync();
 
             // Assert
             Assert.NotNull(recipes);
-            Assert.Equal(3, recipes.Count());
+            Assert.Equal(2, recipes.Count());           
+            Assert.Equal("TEST", recipes.ElementAt(1).Name);
         }
-
-        [Fact]
-        public async void Returns_GetAllRecipes()
-        {
-            // Arrange
-            var listReceipeResponse = new List<Recipe>
-         {
-             new() { Id = 1,Name="Demo"}
-         };
-
-            var mockContext = new Mock<YummiDbContext>();
-            var mockDbSet = new Mock<Microsoft.EntityFrameworkCore.DbSet<Recipe>>();
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Provider).Returns(listReceipeResponse.AsQueryable().Provider);
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Expression).Returns(listReceipeResponse.AsQueryable().Expression);
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.ElementType).Returns(listReceipeResponse.AsQueryable().ElementType);
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.GetEnumerator()).Returns(listReceipeResponse.GetEnumerator());
-
-            mockContext.Setup(m => m.Set<Recipe>()).Returns(mockDbSet.Object);
-            var repository = new GenericRepository<Recipe>(mockContext.Object);
-
-            // Act
-            var recipes = await repository.GetAllAsync();
-
-            // Assert
-            Assert.NotNull(recipes);
-            Assert.Equal(listReceipeResponse.Count, recipes.Count());
-        }
+       
 
         // Other tests...
 

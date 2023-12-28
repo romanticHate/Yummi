@@ -8,9 +8,10 @@ namespace Yummi.Persistance.Repositories
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected DbSet<T> _entities;
+        private readonly YummiDbContext _context;
         public GenericRepository(YummiDbContext context)
         {
-            //_context = context;
+            _context = context;
             _entities = context.Set<T>();
         }
         public async Task AddAsync(T entity)
@@ -18,7 +19,7 @@ namespace Yummi.Persistance.Repositories
             await _entities.AddAsync(entity);
         }
 
-        public void AddRange(IEnumerable<T> entities)
+        public void AddRange(IQueryable<T> entities)
         {
             // _context.Set<T>().AddRange(entities);
             throw new NotImplementedException();
@@ -31,8 +32,10 @@ namespace Yummi.Persistance.Repositories
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await _entities.ToListAsync();
+        {           
+            return await _entities
+                .OrderBy(x => x.Name)
+                .ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
@@ -41,7 +44,7 @@ namespace Yummi.Persistance.Repositories
             return entity;
         }
 
-        public void RemoveRange(IEnumerable<T> entities)
+        public void RemoveRange(IQueryable<T> entities)
         {
             // _context.Set<T>().RemoveRange(entities);
             throw new NotImplementedException();

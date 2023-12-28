@@ -38,7 +38,8 @@ namespace Yummi.WebAPI.Controllers
         {
             //return await _recipeRepository.GetAllAsync();
             var response = await _mediator.Send(new GetAllRecipeQry());
-            var lstRecipe = _mapper.Map<List<RecipeDto>>(response.Payload);
+
+            var lstRecipe = _mapper.Map<List<RecipeDto>>(response.Payload);               
 
             return response.IsError ? BadRequest(response.Errors):Ok(lstRecipe);
         }

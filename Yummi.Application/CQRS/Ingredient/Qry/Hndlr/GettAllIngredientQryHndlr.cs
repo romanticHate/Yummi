@@ -24,7 +24,7 @@ namespace Yummi.Application.CQRS.Ingredient.Qry.Hndlr
             var response = new OperationResponse<IEnumerable<Core.Entities.Ingredient>>();
             try
             {
-                response.Payload = await _uOw.IngredientRepository.GetAllAsync();
+                response.Payload =  await _uOw.IngredientRepository.GetAllAsync();               
             }
             catch (Exception  ex)
             {

@@ -2,7 +2,6 @@
 {
     public partial class Recipe : BaseEntity
     {      
-        public string Name { get; set; } = null!;
         public string? Description { get; set; }
         public string Instructions { get; set; } = null!;
         public string? Cuisine { get; set; }
