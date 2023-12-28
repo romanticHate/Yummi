@@ -27,9 +27,10 @@ namespace Yummi.WebAPI.Controllers
         public async Task<IActionResult>Get()
         {
            var response = await _mediator.Send(new GetAllIngredientQry());
-            var lstIngrdnt = _mapper.Map<List<IngredientDto>>(response.Payload);
 
-            return response.IsError ? BadRequest(response.Errors): Ok(lstIngrdnt);
+           var lstIngrdnt = _mapper.Map<List<IngredientDto>>(response.Payload);              
+
+           return response.IsError ? BadRequest(response.Errors): Ok(lstIngrdnt);
         }
 
         // GET api/<IngredientController>/5

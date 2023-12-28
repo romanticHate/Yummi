@@ -7,10 +7,10 @@ namespace Yummi.Core.Interfaces.Generic
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task AddAsync(T entity);
-        void AddRange(IEnumerable<T> entities);
+        void AddRange(IQueryable<T> entities);
         void Update(T entity);
         Task DeleteAsync(int id);
-        void RemoveRange(IEnumerable<T> entities);
+        void RemoveRange(IQueryable<T> entities);
 
     }
 }

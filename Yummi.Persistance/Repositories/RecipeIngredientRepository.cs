@@ -17,15 +17,18 @@ namespace Yummi.Persistance.Repositories
         public async Task<List<IngredientAmountDto>> GetAllRecipeIngredients(string recipeName)
         {           
             var query = from r in _context.Set<Recipe>()
-                        .AsNoTracking()                           
+                        
                         join ri in _context.Set<RecipeIngredient>()
-                        .AsNoTracking() on r.Id equals ri.RecipeId
+                        on r.Id equals ri.RecipeId
+
                         join i in _context.Set<Ingredient>()
-                        .AsNoTracking() on ri.IngredientId equals i.Id
+                        on ri.IngredientId equals i.Id
+
                         join m in _context.Set<Measure>()
-                        .AsNoTracking() on ri.MeasureId equals m.Id
+                        on ri.MeasureId equals m.Id
+
                         where r.Name == recipeName
-                        select new { i.Name , ri.Amount/*, m.Name*/ };
+                        select new { i.Name , ri.Amount };
             
            var lstRecipeIngredients = new List<IngredientAmountDto>();
           
@@ -37,7 +40,7 @@ namespace Yummi.Persistance.Repositories
                 lstRecipeIngredients.Add(item);               
             };
            
-            return lstRecipeIngredients;                     
+            return lstRecipeIngredients.OrderBy(ri => ri.Name).ToList();                     
         }
 
        

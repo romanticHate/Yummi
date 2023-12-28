@@ -19,7 +19,7 @@ namespace Yummi.Application.CQRS.Recipe.Qry.Hndlr
             var result = new OperationResponse<IEnumerable<Core.Entities.Recipe>>();
             try
             {
-                result.Payload = await _uOw.RecipeRepository.GetAllAsync();
+                result.Payload =  await _uOw.RecipeRepository.GetAllAsync();               
             }
             catch (Exception ex)
             {
