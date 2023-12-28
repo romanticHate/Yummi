@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Yummi.Core.DTOs;
+﻿using Yummi.Core.DTOs;
 using Yummi.Core.Entities;
 using Yummi.Core.Interfaces;
 using Yummi.Persistance.DataContext;
