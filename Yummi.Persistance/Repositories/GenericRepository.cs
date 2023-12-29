@@ -34,7 +34,7 @@ namespace Yummi.Persistance.Repositories
         public async Task<IEnumerable<T>> GetAllAsync()
         {           
             return await _entities
-                .OrderBy(x => x.Name)
+                .OrderBy(t => t.Name)
                 .ToListAsync();
         }
 

@@ -37,14 +37,15 @@ namespace Yummi.UnitTest
             return new TestAsyncEnumerable<TResult>(expression);
         }
 
-        public ValueTask<TResult> ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
+        public TResult ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken = default)
         {
-            return new ValueTask<TResult>(_inner.Execute<TResult>(expression));
+            return _inner.Execute<TResult>(expression);
         }
 
-        TResult IAsyncQueryProvider.ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        //public ValueTask<TResult> ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
+        //{
+        //    return new ValueTask<TResult>(_inner.Execute<TResult>(expression));
+        //}
+       
     }
 }
