@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Yummi.Application.CQRS.RecipeIngredient.Qry;
 using Yummi.Core.DTOs;
 using Yummi.Core.Entities;
 using Yummi.Core.Interfaces;
@@ -13,27 +15,29 @@ namespace Yummi.WebAPI.Controllers
     public class RecipeIngredientController : ControllerBase
     {              
         private readonly IUnitOfWork _uOw;
-        private readonly IMapper _mapper;       
-       
+        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
+
         public RecipeIngredientController(           
             IUnitOfWork uOw,
-            IMapper mapper)
+            IMapper mapper,
+            IMediator mediator)
         {                      
             _uOw = uOw;
             _mapper = mapper;
-           
+            _mediator = mediator;
+
+
         }
 
         // GET: api/<RecipeController>
         [HttpGet("GetAllRecipeIngredients")]
         public async Task<IActionResult> GetAllRecipeIngredients(string recipeName)
-        {
-            var lstRcpIngrdnt = await _uOw.RecipeIngredientRepository.GetAllRecipeIngredients(recipeName.ToLower());
-            return Ok(lstRcpIngrdnt);
-            //var response = await _mediator.Send(new GetRecipeIngredientsQry());
-            //var lstRecipeIngredients = _mapper.Map<List<RecipeIngredientsDto>>(response.Payload);
+        {           
+            var response = await _mediator.Send(new GetAllRecipeIngredientQry { RecipeName = recipeName.ToLower() });
+            //var lstRecipeIngredients = _mapper.Map<List<RecipeIngredientDto>>(response.Payload);
 
-            //return response.IsError ? BadRequest(response.Errors) : Ok(lstRecipeIngredients);
+            return response.IsError ? BadRequest(response.Errors) : Ok(response.Payload);
         }
 
         //// GET: api/<RecipeIngredientController>

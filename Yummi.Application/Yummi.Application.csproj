@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Yummi.Persistance\Yummi.Persistance.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CQRS\RecipeIngredient\Cmmd\" />
+  </ItemGroup>
+
 </Project>
