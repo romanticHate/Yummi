@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="xunit" Version="2.4.2" />
@@ -26,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Yummi.Core\Yummi.Core.csproj" />
     <ProjectReference Include="..\Yummi.Persistance\Yummi.Persistance.csproj" />
+    <ProjectReference Include="..\Yummi.WebAPI\Yummi.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 using Yummi.Core.Entities;
 using Yummi.Core.Interfaces.Generic;
 using Yummi.Persistance.DataContext;
@@ -8,10 +9,10 @@ namespace Yummi.Persistance.Repositories
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected DbSet<T> _entities;
-        private readonly YummiDbContext _context;
+        //private readonly YummiDbContext _context;
         public GenericRepository(YummiDbContext context)
         {
-            _context = context;
+            //_context = context;
             _entities = context.Set<T>();
         }
         public async Task AddAsync(T entity)
