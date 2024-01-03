@@ -41,11 +41,10 @@ namespace Yummi.UnitTest
         {
             return _inner.Execute<TResult>(expression);
         }
-
-        //public ValueTask<TResult> ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
+        //public Task<TResult> ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken = default)
         //{
-        //    return new ValueTask<TResult>(_inner.Execute<TResult>(expression));
-        //}
-       
+        //    return Task.FromResult(Execute<TResult>(expression));
+        //}       
+
     }
 }
