@@ -4,9 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
-using System.Net.Sockets;
 using Xunit;
 using Yummi.Application.CQRS.Recipe.Qry;
 using Yummi.Application.Models;
@@ -73,6 +70,7 @@ namespace Yummi.UnitTest
             var mockRecipeList = Enumerable.Empty<Recipe>().AsQueryable();           
 
             var mockDbSet = new Mock<DbSet<Recipe>>();
+
             mockDbSet.ReturnsDbSet(recipes);
             mockDbSet.As<IAsyncEnumerable<Recipe>>()
                .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
@@ -86,7 +84,8 @@ namespace Yummi.UnitTest
             mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Expression).Returns(mockRecipeList.Expression);
             mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.ElementType).Returns(mockRecipeList.ElementType);
             mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.GetEnumerator()).Returns(mockRecipeList.GetEnumerator());
-
+            mockDbSet.Setup(d => d.FindAsync(It.IsAny<int>()))
+            .ReturnsAsync(recipe);
             var mockContext = new Mock<YummiDbContext>();
             mockContext.Setup(c => c.Set<Recipe>()).Returns(mockDbSet.Object);
 
@@ -139,8 +138,7 @@ namespace Yummi.UnitTest
             var mockContext = new Mock<YummiDbContext>();
             mockContext.Setup(c => c.Set<Recipe>()).Returns(mockSet.Object);
 
-            var repository = new Mock<GenericRepository<Recipe>>(mockContext.Object);
-            repository.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(entity);
+            var repository = new Mock<GenericRepository<Recipe>>(mockContext.Object);           
 
             // Act
             await repository.Object.DeleteAsync(id);
