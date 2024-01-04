@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace Yummi.UnitTest
+namespace Yummi.UnitTest.Mock
 {
     public static class MockDbSetExtensions
     {

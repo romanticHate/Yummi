@@ -1,10 +1,10 @@
-﻿namespace Yummi.UnitTest
+﻿namespace Yummi.UnitTest.Mock
 {
-    public class TestAsyncEnumerator<T> : IAsyncEnumerator<T>
+    public class MockAsyncEnumerator<T> : IAsyncEnumerator<T>
     {
         private readonly IEnumerator<T> _inner;
 
-        public TestAsyncEnumerator(IEnumerator<T> inner)
+        public MockAsyncEnumerator(IEnumerator<T> inner)
         {
             _inner = inner;
         }
