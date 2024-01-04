@@ -1,25 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
-namespace Yummi.UnitTest
+namespace Yummi.UnitTest.Mock
 {
-    public class TestAsyncQueryProvider<TEntity> : IAsyncQueryProvider
+    public class MockAsyncQueryProvider<TEntity> : IAsyncQueryProvider
     {
         private readonly IQueryProvider _inner;
 
-        public TestAsyncQueryProvider(IQueryProvider inner)
+        public MockAsyncQueryProvider(IQueryProvider inner)
         {
             _inner = inner;
         }
 
         public IQueryable CreateQuery(Expression expression)
         {
-            return new TestAsyncEnumerable<TEntity>(expression);
+            return new MockAsyncEnumerable<TEntity>(expression);
         }
 
         public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
         {
-            return new TestAsyncEnumerable<TElement>(expression);
+            return new MockAsyncEnumerable<TElement>(expression);
         }
 
         public object Execute(Expression expression)
@@ -34,7 +34,7 @@ namespace Yummi.UnitTest
 
         public IAsyncEnumerable<TResult> ExecuteAsync<TResult>(Expression expression)
         {
-            return new TestAsyncEnumerable<TResult>(expression);
+            return new MockAsyncEnumerable<TResult>(expression);
         }
 
         public TResult ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken = default)

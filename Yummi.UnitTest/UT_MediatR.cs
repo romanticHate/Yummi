@@ -1,8 +1,8 @@
-﻿using MediatR;
-using Moq;
+﻿using Moq;
 using Xunit;
 using Yummi.Application.CQRS.Recipe.Qry;
 using Yummi.Application.CQRS.Recipe.Qry.Hndlr;
+using Yummi.Core.Entities;
 using Yummi.Core.Interfaces;
 
 namespace Yummi.UnitTest
@@ -17,7 +17,7 @@ namespace Yummi.UnitTest
             var mockRecipeRepository = new Mock<IRecipeRepository>();
 
             // Setup your mock data here
-            var dataRecipe = new Core.Entities.Recipe { /* your data */ };
+            var dataRecipe = new Recipe { /* your data */ };
 
             mockRecipeRepository.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(dataRecipe);
             mockUnitOfWork.Setup(u => u.RecipeRepository).Returns(mockRecipeRepository.Object);

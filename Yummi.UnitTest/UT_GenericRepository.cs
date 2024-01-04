@@ -12,6 +12,7 @@ using Yummi.Core.Entities;
 using Yummi.Core.Interfaces;
 using Yummi.Persistance.DataContext;
 using Yummi.Persistance.Repositories;
+using Yummi.UnitTest.Mock;
 using Yummi.WebAPI.Controllers;
 
 namespace Yummi.UnitTest
@@ -34,11 +35,11 @@ namespace Yummi.UnitTest
             var mockDbSet = new Mock<DbSet<Recipe>>();
             mockDbSet.As<IAsyncEnumerable<Recipe>>()
                 .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
-                .Returns(new TestAsyncEnumerator<Recipe>(mockRecipeList.GetEnumerator()));
+                .Returns(new MockAsyncEnumerator<Recipe>(mockRecipeList.GetEnumerator()));
 
             mockDbSet.As<IQueryable<Recipe>>()
                 .Setup(m => m.Provider)
-                .Returns(new TestAsyncQueryProvider<Recipe>(mockRecipeList.Provider));
+                .Returns(new MockAsyncQueryProvider<Recipe>(mockRecipeList.Provider));
 
             mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Expression).Returns(mockRecipeList.Expression);
             mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.ElementType).Returns(mockRecipeList.ElementType);
@@ -74,11 +75,11 @@ namespace Yummi.UnitTest
             mockDbSet.ReturnsDbSet(recipes);
             mockDbSet.As<IAsyncEnumerable<Recipe>>()
                .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
-               .Returns(new TestAsyncEnumerator<Recipe>(mockRecipeList.GetEnumerator()));
+               .Returns(new MockAsyncEnumerator<Recipe>(mockRecipeList.GetEnumerator()));
 
             mockDbSet.As<IQueryable<Recipe>>()
                 .Setup(m => m.Provider)
-                .Returns(new TestAsyncQueryProvider<Recipe>(mockRecipeList.Provider));
+                .Returns(new MockAsyncQueryProvider<Recipe>(mockRecipeList.Provider));
 
             mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Provider).Returns(mockRecipeList.Provider);
             mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Expression).Returns(mockRecipeList.Expression);
@@ -181,42 +182,42 @@ namespace Yummi.UnitTest
             mockSetRecipes.ReturnsDbSet(recipes);
             mockSetRecipes.As<IAsyncEnumerable<Recipe>>()
                .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
-               .Returns(new TestAsyncEnumerator<Recipe>(recipes.GetEnumerator()));
+               .Returns(new MockAsyncEnumerator<Recipe>(recipes.GetEnumerator()));
 
             mockSetRecipes.As<IQueryable<Recipe>>()
                 .Setup(m => m.Provider)
-                .Returns(new TestAsyncQueryProvider<Recipe>(recipes.Provider));
+                .Returns(new MockAsyncQueryProvider<Recipe>(recipes.Provider));
 
             var mockSetIngredients = new Mock<DbSet<Ingredient>>();
             mockSetIngredients.ReturnsDbSet(ingredients);
             mockSetIngredients.As<IAsyncEnumerable<Ingredient>>()
                 .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
-                .Returns(new TestAsyncEnumerator<Ingredient>(ingredients.GetEnumerator()));
+                .Returns(new MockAsyncEnumerator<Ingredient>(ingredients.GetEnumerator()));
 
             mockSetIngredients.As<IQueryable<Ingredient>>()
                 .Setup(m => m.Provider)
-                .Returns(new TestAsyncQueryProvider<Ingredient>(ingredients.Provider));
+                .Returns(new MockAsyncQueryProvider<Ingredient>(ingredients.Provider));
 
 
             var mockSetMeasures = new Mock<DbSet<Measure>>();
             mockSetMeasures.ReturnsDbSet(measures);
             mockSetMeasures.As<IAsyncEnumerable<Measure>>()
                .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
-               .Returns(new TestAsyncEnumerator<Measure>(measures.GetEnumerator()));
+               .Returns(new MockAsyncEnumerator<Measure>(measures.GetEnumerator()));
 
             mockSetMeasures.As<IQueryable<Measure>>()
                 .Setup(m => m.Provider)
-                .Returns(new TestAsyncQueryProvider<Measure>(measures.Provider));
+                .Returns(new MockAsyncQueryProvider<Measure>(measures.Provider));
 
             var mockSetRecipeIngredients = new Mock<DbSet<RecipeIngredient>>();
             mockSetRecipeIngredients.ReturnsDbSet(recipeIngredients);
             mockSetRecipeIngredients.As<IAsyncEnumerable<RecipeIngredient>>()
                 .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
-                .Returns(new TestAsyncEnumerator<RecipeIngredient>(recipeIngredients.GetEnumerator()));
+                .Returns(new MockAsyncEnumerator<RecipeIngredient>(recipeIngredients.GetEnumerator()));
 
             mockSetRecipeIngredients.As<IQueryable<RecipeIngredient>>()
                 .Setup(m => m.Provider)
-                .Returns(new TestAsyncQueryProvider<RecipeIngredient>(recipeIngredients.Provider));
+                .Returns(new MockAsyncQueryProvider<RecipeIngredient>(recipeIngredients.Provider));
 
 
             mockContext.Setup(c => c.Set<Recipe>()).Returns(mockSetRecipes.Object);
