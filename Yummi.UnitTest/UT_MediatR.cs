@@ -10,16 +10,16 @@ namespace Yummi.UnitTest
     public class UT_MediatR
     {
         [Fact]
-        public async Task Test_MediatR_Hndlr_and_Qry()
+        public async Task TstMediatR_Hndlr_and_Qry()
         {
             // Arrange
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             var mockRecipeRepository = new Mock<IRecipeRepository>();
 
             // Setup your mock data here
-            var dataRecipe = new Recipe { /* your data */ };
+            var recipe = new Recipe { /* your data */ };
 
-            mockRecipeRepository.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(dataRecipe);
+            mockRecipeRepository.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(recipe);
             mockUnitOfWork.Setup(u => u.RecipeRepository).Returns(mockRecipeRepository.Object);
 
             var handler = new GetByIdRecipeQryHndlr(mockUnitOfWork.Object);
@@ -30,7 +30,7 @@ namespace Yummi.UnitTest
             // Assert
             Assert.NotNull(result);
             Assert.False(result.IsError);
-            Assert.Equal(dataRecipe, result.Payload);
+            Assert.Equal(recipe, result.Payload);
         }
     }
 }

@@ -72,21 +72,9 @@ namespace Yummi.UnitTest
 
             var mockDbSet = new Mock<DbSet<Recipe>>();
 
-            mockDbSet.ReturnsDbSet(recipes);
-            mockDbSet.As<IAsyncEnumerable<Recipe>>()
-               .Setup(m => m.GetAsyncEnumerator(new CancellationToken()))
-               .Returns(new MockAsyncEnumerator<Recipe>(mockRecipeList.GetEnumerator()));
-
-            mockDbSet.As<IQueryable<Recipe>>()
-                .Setup(m => m.Provider)
-                .Returns(new MockAsyncQueryProvider<Recipe>(mockRecipeList.Provider));
-
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Provider).Returns(mockRecipeList.Provider);
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.Expression).Returns(mockRecipeList.Expression);
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.ElementType).Returns(mockRecipeList.ElementType);
-            mockDbSet.As<IQueryable<Recipe>>().Setup(m => m.GetEnumerator()).Returns(mockRecipeList.GetEnumerator());
             mockDbSet.Setup(d => d.FindAsync(It.IsAny<int>()))
             .ReturnsAsync(recipe);
+
             var mockContext = new Mock<YummiDbContext>();
             mockContext.Setup(c => c.Set<Recipe>()).Returns(mockDbSet.Object);
 
