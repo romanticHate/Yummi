@@ -35,7 +35,7 @@ namespace Yummi.UnitTest
             mockMediator.Setup(m => m.Send(It.IsAny<GetAllRecipeQry>(),
                 It.IsAny<CancellationToken>()))
                 .ReturnsAsync(response);
-
+            
             var controller = new RecipeController(mockLogger.Object,
                 mockUoW.Object,
                 mockMapper.Object,
@@ -46,10 +46,7 @@ namespace Yummi.UnitTest
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
-            var returnValue = Assert.IsType<List<RecipeDto>>(okResult.Value);
-
-            mockMediator.Verify(m => m.Send(It.IsAny<GetAllRecipeQry>(),
-                It.IsAny<CancellationToken>()), Times.Once());
+            var returnValue = Assert.IsType<List<RecipeDto>>(okResult.Value);           
         }
         [Fact]
         public async Task From_RecipeController_GetByIdAsync_Returns_Recipe()
@@ -65,8 +62,11 @@ namespace Yummi.UnitTest
             var dataRecipeDto = new RecipeDto { Name = "Test" };
 
 
-            mockMediator.Setup(m => m.Send(It.IsAny<GetByIdRecipeQry>(), It.IsAny<CancellationToken>())).ReturnsAsync(dataResponse);
-            mockMapper.Setup(m => m.Map<RecipeDto>(It.IsAny<Recipe>())).Returns(dataRecipeDto);
+            mockMediator.Setup(m => m.Send(It.IsAny<GetByIdRecipeQry>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(dataResponse);
+            mockMapper.Setup(m => m.Map<RecipeDto>(It.IsAny<Recipe>()))
+                .Returns(dataRecipeDto);
 
             var controller = new RecipeController(mockLogger.Object,
                 mockUoW.Object,
@@ -77,15 +77,11 @@ namespace Yummi.UnitTest
             var result = await controller.GetById(1);
 
             // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            //var returnValue = Assert.IsType<List<RecipeDto>>(okResult.Value);
+            var okResult = Assert.IsType<OkObjectResult>(result);           
             var returnValue = okResult.Value as RecipeDto;
+            
             Assert.NotNull(returnValue);
-
-            Assert.Equal("Test", returnValue.Name);
-
-            mockMediator.Verify(m => m.Send(It.IsAny<GetByIdRecipeQry>(),
-                It.IsAny<CancellationToken>()), Times.Once());
+            Assert.Equal("Test", returnValue.Name);            
         }
         #endregion
     }

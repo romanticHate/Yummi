@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Xunit;
 
 namespace Yummi.UnitTest
 {
-    internal class UT_RecipeIngredientController
+    public class UT_RecipeIngredientController
     {
+        [Fact]
+        public void Test_Method() { }
     }
 }
